@@ -1,0 +1,110 @@
+Python Programming test
+
+Question one. 
+concurrency python
+Describe two different modules for exploiting concurrency Python, pointing out the
+strengths and weaknesses of each and of concurrency as a whole in Python.
+We know concurrency also by multiprocessing and parallel processing. 
+python uses concurrency to facilitate computers in running a program efficiently on complex distributed systems. Web servers are most simple example that can be given, for example web server is not responding to the user’s request until the previous one is completed. Concurrency modules are used where high-volume multithreaded work is required. 
+
+Threading Module:
+The give code is one using python already placed API. 
+The example runs two, one is created the program and the second thread exist in the input reader class. 
+ 
+from threading import Thread
+
+class InputReader(Thread):  
+    def run(self):
+        self.line_of_text = input()
+
+    print("Enter some text and press enter: ") 
+
+thread = InputReader() 
+thread.start()
+count = result = 1
+while thread.is_alive():
+    result = count * count    
+    count += 1
+
+print("calculated squares up to {0} * {0} = {1}".format(count, result)) 
+
+print("while you typed '{}'".format(thread.line_of_text)) 
+
+As soon the program executed the input is required, start () thread method is called on the object. While waiting for the input in the background thread continues to execute and count the squares in the while loop. 
+For example 
+yes
+calculated squares up to 2397950 * 2397950 = 5750159406601
+while you typed 'yes'
+>>>
+
+Multiprocessing module. 
+Using thread library has its disadvantages.
+For more complex CPU intensive jobs and parallel computing multiprocessing library is designed. 
+The first 9 lines are the process IDs that are printed inside the CPUprocess instance the last line shows 
+how much time it took for my CPU to compute 20 million interactions which was about 0.7 sec. 
+The printed process ID are the unique number assuaged by the OS to each process. 
+
+
+
+
+
+
+
+from multiprocessing import Process, cpu_count
+import time
+import os
+
+class CPUprocess(Process):    
+    def run(self):
+        print(os.getpid())       
+        for i in range(2000000):          
+            pass
+if __name__ == '__main__':  
+    procs =  [CPUprocess() for f in range(cpu_count())]  
+    t = time.time()    
+    for p in procs:  
+        p.start()  
+    for p in procs:      
+        p.join()   
+    print('work took {} seconds'.format(time.time() - t)) 
+
+
+
+41972
+39004
+40540
+21252
+28376
+42356
+7780
+62520
+work took 0.6459980010986328 seconds
+
+Question two
+ 
+The output of the function will be:
+[23]
+[16, 1, 2]
+[[10], 3, 4]
+[[11], 23]
+The reason, python stores the list in by taking 2 parameters, 
+Index, and element. In the above function, python insert function is used to insert the element. 
+Lst.insert put the value of v at the 0th index of the list. When the function called 23 is returned.  
+Other values in the output are return as result of function call and by passing those values to the function fn. 
+
+Question three.
+def eveNumSq():
+    elist=[1,2,3,4,5,6,7,8,9,10]
+    sqlist = []
+    for i in elist:
+        if i % 2==0:
+            sqlist.append(i*i)
+    listsum=sum(sqlist)
+    print ("even integer list is ->", sqlist, "sum of even numbers is in the given list is -> ",listsum)
+    
+eveNumSq()
+
+PS D:\TestPythonFiles> python -i F:\linked\test\merge.py
+even integer list is -> [4, 16, 36, 64, 100] sum of even numbers is in the given list is ->  220
+>>>
+
